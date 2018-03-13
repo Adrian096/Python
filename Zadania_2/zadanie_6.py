@@ -1,9 +1,10 @@
-import os, sys
+import os
 
 sciezka = input("Podaj sciezke do katalogu \n")
-rozszerzenie = input("Podaj rozszerzenie")
+rozszerzenie = input("Podaj rozszerzenie \n")
 
 katalogi = os.listdir(sciezka)
 
 for plik in katalogi:
-  print(plik)
+    if plik.endswith(rozszerzenie):
+        print(plik)
