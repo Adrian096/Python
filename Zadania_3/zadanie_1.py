@@ -1,69 +1,72 @@
-class liczbaZespolona:
-    liczby = [0, 0]
+class LiczbaZespolona(object):
+    a = 0
+    b = 0
 
     def __init__(self, zmienna_1, zmienna_2):
-        self.liczby[0] = zmienna_1
-        self.liczby[1] = zmienna_2
+        self.a = zmienna_1
+        self.b = zmienna_2
 
     def wyswietl(self):
-        print("%i + %ii" % (self.liczby[0], self.liczby[1]))
-
-    def __setattr__(self, key, value):
-        if(key == "re"):
-            self.liczby[0] = value
-        elif(key == "im"):
-            self.liczby[1] = value
-        elif(key == "liczby"):
-            self.liczby = [value[0], value[1]]
-
+        print("%i + %ii" % (self.a, self.b))
 
     def __add__(self, other):
-        k_1 = self.liczby[0] + other.liczby[0]
-        k_2 = self.liczby[1] + other.liczby[1]
-        lZesp = liczbaZespolona(k_1, k_2)
-        return lZesp
+        k_1 = self.a + other.a
+        k_2 = self.b + other.b
+        l_zesp = LiczbaZespolona(k_1, k_2)
+        return l_zesp
 
     def __sub__(self, other):
-        k_1 = self.liczby[0] - other.liczby[0]
-        k_2 = self.liczby[1] - other.liczby[1]
-        lZesp = liczbaZespolona(k_1, k_2)
-        return lZesp
+        k_1 = self.a - other.a
+        k_2 = self.b - other.b
+        l_zesp = LiczbaZespolona(k_1, k_2)
+        return l_zesp
 
     def __mul__(self, other):
-        k_1 = (self.liczby[0]* other.liczby[0]) - (self.liczby[0] * other.liczby[0])
-        k_2 = (self.liczby[0] * other.liczby[1]) + (self.liczby[1] * other.liczby[0])
-        lZesp = liczbaZespolona(k_1, k_2)
-        return lZesp
+        k_1 = (self.a* other.a) - (self.a * other.a)
+        k_2 = (self.a * other.b) + (self.b * other.a)
+        l_zesp = LiczbaZespolona(k_1, k_2)
+        return l_zesp
 
-    def __div__(self, other):
-        k_1 = ((self.liczby[0] * other.liczby[0]) + (self.liczby[1] * other.liczby[1]))/((other.liczby[0]**2)+(other.liczby[1]**2))
-        k_2 = ((self.b * other.liczby[0]) - (self.liczby[0] * other.liczby[1]))/((other.liczby[0]**2)+(other.liczby[1]**2))
-        lZesp = liczbaZespolona(k_1, k_2)
-        return lZesp
+    def __truediv__(self, other):
+        k_1 = ((self.a * other.a) + (self.b * other.b))/((other.a**2)+(other.b**2))
+        k_2 = ((self.b * other.a) - (self.a * other.b))/((other.a**2)+(other.b**2))
+        l_zesp = LiczbaZespolona(k_1, k_2)
+        return l_zesp
 
     def modul(self):
-        modulZespolony = (self.liczby[0]**2 + self.liczby[1]**2)**0.5
-        return modulZespolony
+        return (self.a**2 + self.b**2)**0.5
 
-    def __eq__(self, other):
-        modulSelf = (self.liczby[0]**2 + self.liczby[1] ** 2)**0.5
-        modulOther = (other.liczby[0] ** 2 + other.liczby[1]**2)**0.5
-        return modulOther == modulSelf
-
-    def __ge__(self, other):
-        modulSelf = (self.liczby[0]**2 + self.liczby[1]**2)**0.5
-        modulOther = (other.liczby[0]**2 + other.liczby[1]**2)**0.5
-        return modulOther > modulSelf
+    def __lt__(self, other):
+        return (self.modul() < other.modul())
 
     def __le__(self, other):
-        modulSelf = (self.liczby[0]**2 + self.liczby[1]**2)**0.5
-        modulOther = (other.liczby[0]**2 + other.liczby[1]**2)**0.5
-        return modulOther < modulSelf
+        return (self.modul() <= other.modul())
+
+    def __gt__(self, other):
+        return (self.modul() > other.modul())
+
+    def __ge__(self, other):
+        return (self.modul() >= other.modul())
+
+    def __eq__(self, other):
+        return (self.modul() == other.modul())
 
 
-l1 = liczbaZespolona(3.0, 5.0)
-l2 = liczbaZespolona(1.0, 2.0)
+l1 = LiczbaZespolona(3.0, 5.0)
+l2 = LiczbaZespolona(1.0, 2.0)
+print(l1.wyswietl())
+print(l2.wyswietl())
 
-print(l1.modul())
-print(l2.modul())
+l3 = l1 + l2
+l4 = l1 - l2
+l5 = l1 * l2
+l6 = l1 / l2
+
+print(l3.wyswietl())
+print(l4.wyswietl())
+print(l5.wyswietl())
+print(l6.wyswietl())
+
+print(l1 < l2)
+
 
