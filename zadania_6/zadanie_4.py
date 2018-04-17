@@ -1,8 +1,6 @@
 import urllib2
-
-response = urllib2.urlopen("https://www.python.org/")
+response = urllib2.urlopen("http://python.org/")
 html = response.read()
 
-plik = open("tekst.txt" -w)
+plik = open("tekst.txt", "w")
 plik.write(html)
-
