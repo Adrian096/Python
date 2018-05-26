@@ -1,17 +1,28 @@
-import Tkinter as tk
-import tkFont as tkF
-import time as tm
+import tkinter as tk
+from tkinter import *
+from tkinter import messagebox as tkMs
 
 root = tk.Tk()
 
-default_font = tkF.nametofont("TkDefaultFont")
-default_font.configure(size=16)
-root.option_add("*Font", default_font)
+v = tk.IntVar()
+v.set(0)
 
-i = 20
+w = tk.Label(root, text=v.get())
+w.pack()
 
-for i in range(0, 20):
-    i = i+1
-    tm.sleep(1000)
-    print(i)
+def update_clock():
+    v.set(v.get() + 1)
+    if(v.get() < int(e.get())):
+        w.configure(text=v.get())
+        root.after(1000, update_clock)
+    else:
+        tkMs.showinfo("Wiadomość", "Final Countdown")
+        v.set(0)
 
+b1 = Button(root , text ="Start", command=update_clock)
+e = Entry(root)
+
+e.pack()
+b1.pack()
+
+root.mainloop()
