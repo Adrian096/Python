@@ -22,7 +22,7 @@ class Ksiazki(Base):
     student_id = Column(NUMERIC)
 
 
-engine = create_engine('sqlite:///liblary.db', echo=True)
+engine = create_engine('sqlite:///library.db', echo=True)
 
 Base.metadata.create_all(engine)
 
