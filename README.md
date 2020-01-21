@@ -1,3 +1,3 @@
 # Python
 
-Zadania na zajęcia z Python'a
+Tasks for the Python language lesson
